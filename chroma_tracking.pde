@@ -1,11 +1,7 @@
 import select.files.*;
 
 SelectLibrary files;
-
-
-
-color bgCol = color(0, 255, 0);
-Trackpoint t1, t2;
+ArrayList<Trackpoint> trackers;
 Configview configview;
 boolean configMode = false;
 boolean oneClickActive = false;
@@ -13,11 +9,36 @@ float clickRef = millis();
 float clickTimer = 500;
 boolean grantedRead = false;
 boolean grantedWrite = false;
+JSONObject userSettings;
+String chromaColor, markerColor1, markerColor2;
+int markerType;
+float markerSize;
+
 
 void setup() {
+
   fullScreen();
-  t1 = new Trackpoint(0.5 * width, 0.8 * height, 0.2 * width);
-  t2 = new Trackpoint(0.5 * width, 0.2 * height, 0.2 * width);
+  
+  userSettings = loadJSONObject("template.json");
+  
+  chromaColor = userSettings.getString("backgroundColor");
+  markerColor1 = userSettings.getString("markerColor1");
+  markerColor2 = userSettings.getString("markerColor2");
+  markerSize = userSettings.getFloat("markerSize");
+  markerType = userSettings.getInt("MarkerType");
+  
+  JSONArray trackersNumber = userSettings.getJSONArray("markers");
+  
+  trackers = new ArrayList<Trackpoint>();
+  
+  for (int i = 0 ; i < trackersNumber.size(); i++) {
+    
+    // Object settings_i = userSettings.getJSONArray("markers").get(i);    
+    
+    // CONTINUE HERE
+    // trackers.add(new Trackpoint(settings_i.xpos, settings_i.ypos, markerSize));
+  }
+  
   configview = new Configview();
 
 

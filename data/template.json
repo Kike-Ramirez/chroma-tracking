@@ -1,0 +1,30 @@
+{
+  "name": "templateName",
+  "chromaColor": "00FF00",
+  "markerColor1": "FFFFFF",
+  "marketColor2": "000000",
+  "markerSize": 0.05,
+  "markerType": 1,
+  "markers": [
+    {
+      "xpos": 0.1,
+      "ypos": 0.1
+    },
+    {
+      "xpos": 0.1,
+      "ypos": 0.9
+    },
+    {
+      "xpos": 0.9,
+      "ypos": 0.1
+    },
+    {
+      "xpos": 0.9,
+      "ypos": 0.9
+    },
+    {
+      "xpos": 0.5,
+      "ypos": 0.5
+    }
+  ]
+}
