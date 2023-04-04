@@ -10,7 +10,7 @@ float clickTimer = 500;
 boolean grantedRead = false;
 boolean grantedWrite = false;
 JSONObject userSettings;
-String chromaColor, markerColor1, markerColor2;
+color chromaColor, markerColor1, markerColor2;
 int markerType;
 float markerSize;
 
@@ -18,30 +18,27 @@ float markerSize;
 void setup() {
 
   fullScreen();
-  
+
   userSettings = loadJSONObject("template.json");
-  
-  chromaColor = userSettings.getString("backgroundColor");
-  markerColor1 = userSettings.getString("markerColor1");
-  markerColor2 = userSettings.getString("markerColor2");
+
+  chromaColor = color(userSettings.getJSONObject("chromaColor").getInt("r"), userSettings.getJSONObject("chromaColor").getInt("g"), userSettings.getJSONObject("chromaColor").getInt("b"));
+  markerColor1 = color(userSettings.getJSONObject("markerColor1").getInt("r"), userSettings.getJSONObject("markerColor1").getInt("g"), userSettings.getJSONObject("markerColor1").getInt("b"));
+  markerColor2 = color(userSettings.getJSONObject("markerColor2").getInt("r"), userSettings.getJSONObject("markerColor2").getInt("g"), userSettings.getJSONObject("markerColor2").getInt("b"));
   markerSize = userSettings.getFloat("markerSize");
-  markerType = userSettings.getInt("MarkerType");
-  
-  JSONArray trackersNumber = userSettings.getJSONArray("markers");
-  
+  markerType = userSettings.getInt("markerType");
+
+  JSONArray trackerList = userSettings.getJSONArray("markers");
+
   trackers = new ArrayList<Trackpoint>();
-  
-  for (int i = 0 ; i < trackersNumber.size(); i++) {
-    
-    // Object settings_i = userSettings.getJSONArray("markers").get(i);    
-    
-    // CONTINUE HERE
-    // trackers.add(new Trackpoint(settings_i.xpos, settings_i.ypos, markerSize));
+
+  for (int i = 0; i < trackerList.size(); i++) {
+
+    JSONObject marker = trackerList.getJSONObject(i);
+
+    trackers.add(new Trackpoint(marker.getFloat("xpos")*width, marker.getFloat("ypos")*height, markerSize*width));
   }
-  
+
   configview = new Configview();
-
-
 
   files = new SelectLibrary(this);
   requestPermissions();
@@ -57,10 +54,10 @@ void draw() {
   if (configMode) {
     configview.render();
   } else {
-    background(bgCol);
-    fill(255);
-    t1.render();
-    t2.render();
+    background(chromaColor);
+    for (int i= 0; i < trackers.size(); i++) {
+      trackers.get(i).render();
+    }
   }
 }
 
@@ -68,9 +65,11 @@ void touchStarted() {
   if (configMode) {
     configview.touchStarted(touches[0].x, touches[0].y);
   } else {
-    t1.touchStarted(touches[0].x, touches[0].y);
-    t2.touchStarted(touches[0].x, touches[0].y);
+    for (int i = 0; i < trackers.size(); i++) {
+      trackers.get(i).touchStarted(touches[0].x, touches[0].y);
+    }
   }
+
   if (oneClickActive) {
     configMode = !configMode;
     oneClickActive = false;
@@ -83,16 +82,18 @@ void touchStarted() {
 void touchMoved() {
   if (configMode) {
   } else {
-    t1.touchMoved(touches[0].x, touches[0].y);
-    t2.touchMoved(touches[0].x, touches[0].y);
+    for (int i = 0; i < trackers.size(); i++) {
+      trackers.get(i).touchMoved(touches[0].x, touches[0].y);
+    }
   }
 }
 
 void touchEnded() {
   if (configMode) {
   } else {
-    t1.touchEnded();
-    t2.touchEnded();
+    for (int i = 0; i < trackers.size(); i++) {
+      trackers.get(i).touchEnded();
+    }
   }
 }
 

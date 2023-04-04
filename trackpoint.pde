@@ -27,11 +27,30 @@ class Trackpoint {
       stroke(255, 0, 0);
       strokeWeight(3);
     } else {
-      strokeWeight(1);
       noStroke();
     }
-    fill(tpcolor);
-    ellipse(xpos, ypos, size, size);
+    
+    if (markerType == 1) {
+      fill(markerColor1);
+      ellipse(xpos, ypos, size, size);
+      fill(markerColor2);
+      arc(xpos, ypos, size, size, 0, HALF_PI, PIE);
+      arc(xpos, ypos, size, size, PI, PI+HALF_PI, PIE);
+    } else if (markerType == 2) {
+      stroke(markerColor1);
+      strokeWeight(3);
+      noFill();
+      ellipse(xpos, ypos, size, size);
+      line(xpos - 0.5 * size, ypos, xpos + 0.5 * size, ypos);
+      line(xpos, ypos - 0.5 * size, xpos, ypos + 0.5 * size);
+    } else if (markerType == 3) {
+      stroke(markerColor1);
+      strokeWeight(3);
+      noFill();
+      // ellipse(xpos, ypos, size, size);
+      line(xpos - 0.5 * size, ypos, xpos + 0.5 * size, ypos);
+      line(xpos, ypos - 0.5 * size, xpos, ypos + 0.5 * size);
+    }
   }
 
   void touchStarted(float x, float y) {

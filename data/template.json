@@ -1,9 +1,21 @@
 {
   "name": "templateName",
-  "chromaColor": "00FF00",
-  "markerColor1": "FFFFFF",
-  "marketColor2": "000000",
-  "markerSize": 0.05,
+  "chromaColor": {
+    "r": 0,
+    "g": 255,
+    "b": 0
+  },
+  "markerColor1": {
+    "r": 0,
+    "g": 0,
+    "b": 0
+  },
+  "markerColor2": {
+    "r": 255,
+    "g": 255,
+    "b": 255
+  },
+  "markerSize": 0.1,
   "markerType": 1,
   "markers": [
     {
