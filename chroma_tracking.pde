@@ -47,7 +47,6 @@ void setup() {
 void draw() {
   if (oneClickActive) {
     if (millis() - clickRef > clickTimer) {
-      println("First click expired");
       oneClickActive = false;
     }
   }

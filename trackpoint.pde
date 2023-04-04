@@ -29,7 +29,7 @@ class Trackpoint {
     } else {
       noStroke();
     }
-    
+
     if (markerType == 1) {
       fill(markerColor1);
       ellipse(xpos, ypos, size, size);
@@ -47,7 +47,6 @@ class Trackpoint {
       stroke(markerColor1);
       strokeWeight(3);
       noFill();
-      // ellipse(xpos, ypos, size, size);
       line(xpos - 0.5 * size, ypos, xpos + 0.5 * size, ypos);
       line(xpos, ypos - 0.5 * size, xpos, ypos + 0.5 * size);
     }

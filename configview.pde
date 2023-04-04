@@ -14,8 +14,8 @@ class Configview {
   }
 
   void touchStarted(float x, float y) {
-    println(x);
-    println(y);
+    //println(x);
+    //println(y);
   }
 
   void render() {
