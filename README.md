@@ -1,5 +1,3 @@
-# GNOMALAB Chroma Tracking Tool
-
 ![ChromaWithMarkersExample][imgPath]
 ## Description
 Application that displays a green screen with tracking markers on Android devices.
@@ -24,4 +22,4 @@ Devices compatible with **[Android SDK 8.0 (API level 26)](https://developer.and
 ## Made with: [Processing 4.1 for Android](https://android.processing.org/)
 ![Processing Android Logo](/assets/Processing%20Android%20Logo.jpg)
 
-[imgPath]: /assets/GCTT_view.png
+[imgPath]: /assets/Chromatrack_Logo.png
